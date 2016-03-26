@@ -1,0 +1,19 @@
+{
+  "name": "tumblerweed",
+  "version": "0.0.1",
+  "description": "Tessel 2 based tumbling robot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/houston-Robotics-Club/tumblerweed.git"
+  },
+  "author": "Donovan Buck <donovan@donovan.bz>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/houston-Robotics-Club/tumblerweed/issues"
+  },
+  "homepage": "https://github.com/houston-Robotics-Club/tumblerweed#readme"
+}

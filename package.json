@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/houston-Robotics-Club/tumblerweed/issues"
   },
-  "homepage": "https://github.com/houston-Robotics-Club/tumblerweed#readme"
+  "homepage": "https://github.com/houston-Robotics-Club/tumblerweed#readme",
+  "dependencies": {
+    "johnny-five": "^0.9.35",
+    "routes": "^2.1.0",
+    "socket.io": "^1.4.5",
+    "tessel-io": "^0.3.0"
+  }
 }

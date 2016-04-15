@@ -57,7 +57,7 @@ io.on('connection', function (socket) {
 
 function user(req, res, match) {
   res.statusCode = 200;
-  var rstream = fs.createReadStream(pathToStaticFiles + 'html/index.html');
+  var rstream = fs.createReadStream(pathToStaticFiles + 'index.html');
   rstream.pipe(res);
 }
 

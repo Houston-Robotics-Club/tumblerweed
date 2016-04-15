@@ -1,5 +1,33 @@
 body {
   background-color: #333;
+  -webkit-user-select: none;
+}
+
+button {
+	background-color: blue;
+	border-radius: 12px;
+	border: none;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-size: 12px;
+	padding: 12px 12px;
+	text-decoration: none;
+  margin: 10px;
+  min-width: 10vw;
+  outline: 0;
+  text-transform: uppercase;
+  -webkit-user-select: none;
+}
+
+button:active {
+	background-color: lightBlue;
+  position:relative;
+	top:4px;
+}
+
+.row {
+  text-align: center;
 }
 
 #controls {
@@ -9,5 +37,6 @@ body {
 
 #stick {
   width: 100vw;
-  height: 50vh;
+  height: 50vw;
+
 }

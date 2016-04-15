@@ -1,20 +1,16 @@
 var stick = new VirtualJoystick({
-  mouseSupport: false,
+  mouseSupport: true,
   container: document.getElementById("stick"),
   strokeStyle: 'blue',
-  stationaryBase: true,
-  baseX: window.innerWidth/2,
-  baseY: window.innerHeight/4,
-  limitStickTravel: true,
-  stickRadius: 50
+  limitStickTravel: true
 });
 
-stick.addEventListener('touchStartValidation', function(event){
-  var touch	= event.changedTouches[0];
-  console.log(touch.pageX, touch.pageY);
-  if( touch.pageX >= window.innerWidth/2 &&  touch.pageY > window.innerHeight/2)	return true;
-  return false;
-});
+// stick.addEventListener('touchStartValidation', function(event){
+//   var touch	= event.changedTouches[0];
+//   console.log(touch.pageX, touch.pageY);
+//   if( touch.pageX >= window.innerWidth/2 &&  touch.pageY > window.innerHeight/2)	return true;
+//   return false;
+// });
 
 var listener = new window.keypress.Listener();
 
@@ -33,9 +29,13 @@ var commands = [
 commands.forEach( function(command) {
   command.el = document.getElementById(command.com);
 
-  command.el.addEventListener("mousedown", function() {
-    console.log(command.com);
+  command.el.addEventListener("touchstart", function() {
     socket.emit(command.com);
+    return false;
+  });
+
+  command.el.addEventListener("touchend", function() {
+    socket.emit("stop");
   });
 
   // Listen for keypress events

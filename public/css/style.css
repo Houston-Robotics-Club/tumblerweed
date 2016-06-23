@@ -26,6 +26,10 @@ button:active {
 	top:4px;
 }
 
+#result {
+  color: #fff;
+}
+
 .row {
   text-align: center;
 }
@@ -35,8 +39,8 @@ button:active {
   height: 50vh;
 }
 
-#stick {
+#stickContainer {
   width: 100vw;
-  height: 50vw;
-
+  height: 50vh;
+  background-color: #00ff00;
 }

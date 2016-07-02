@@ -12,6 +12,10 @@ stick.addEventListener('touchStartValidation', function(event){
   return true;
 });
 
+var ease = function(n) {
+  return n * (2 - n);
+};
+
 var greater = function(a, b) {
   return a > b ? a : b;
 };
@@ -42,28 +46,27 @@ setInterval(function(){
   var outputEl	= document.getElementById('result');
 
   var rawForward = Number(stick.deltaY());
-  var rawAlt = Number(stick.deltaX());
+  var rawAz = Number(stick.deltaX());
 
-  if (rawForward === 0 && rawAlt === 0) {
-    socket.emit("stop");
-    return;
-  }
+  var easedAz = ease(Math.abs(rawAz/100));
+
+  easedAz = rawAz < 0 ? (easedAz * 100) : (easedAz * -100);
 
   var maxDiff = rawForward < 0 ? (-100 - rawForward) : (100 - rawForward);
 
-  var diff = rawAlt >= 0 ? lesser(maxDiff, rawAlt): greater(maxDiff, rawAlt);
+  var diff = easedAz >= 0 ? lesser(maxDiff, easedAz): greater(maxDiff, easedAz);
 
-  if ((rawForward < 0 && rawAlt > 0) || (rawForward > 0 && rawAlt < 0)) {
+  if ((rawForward < 0 && easedAz > 0) || (rawForward > 0 && easedAz < 0)) {
     left = rawForward + diff;
     right = rawForward - diff;
   }
-  if ((rawForward < 0 && rawAlt < 0) || (rawForward > 0 && rawAlt > 0)) {
+  if ((rawForward < 0 && easedAz < 0) || (rawForward > 0 && easedAz > 0)) {
     left = rawForward - diff;
     right = rawForward + diff;
   }
 
-  if (left != lastLeft || right != lastRight) {
-    if (left === 0 && right === 0) {
+  if (left !== lastLeft || right !== lastRight) {
+    if (rawForward === 0 && easedAz === 0) {
       socket.emit("stop");
     } else {
       socket.emit("drive", {left: left, right: right});

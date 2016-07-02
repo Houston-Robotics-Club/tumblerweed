@@ -13,7 +13,6 @@ router.addRoute("/", user);
 router.addRoute("/*", staticFile);
 
 var server = http.createServer(function (req, res) {
-
   var path = url.parse(req.url).pathname;
   var match = router.match(path);
 
@@ -29,8 +28,9 @@ io.on('connection', function (socket) {
 
   // Generate handlers on the user's connection for each method on bot
   bot.commands.forEach(function(command){
-    socket.on(command, function() {
-      if (activeUser === socket) bot[command]();
+    socket.on(command, function(opts) {
+      console.log(command);
+        if (activeUser === socket || 1==1) bot[command](opts);
     });
   });
 
